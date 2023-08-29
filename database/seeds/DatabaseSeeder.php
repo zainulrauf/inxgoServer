@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         // Module::truncate();
         // Permission::truncate();
         $this->call(ModuleSeeder::class);
-        //$this->call(RoleSeeder::class);
+        $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
-        $//this->call(UserRoleSeeder::class);
-        //$this->call(PermissionRoleSeeder::class);
+        $this->call(UserRoleSeeder::class);
+        $this->call(PermissionRoleSeeder::class);
         // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
