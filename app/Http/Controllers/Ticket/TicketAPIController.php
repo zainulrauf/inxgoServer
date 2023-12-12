@@ -11,14 +11,8 @@ class TicketAPIController
 {
     public function index(Request $request)
     {
-		if(isset($request->flag) && $request->flag==1)
-		{
-			 $request=$request->all();
-		}else
-		{
-			$request = json_decode($request->getContent(), true);
-		}
-        
+         // $request=$request->all();
+        $request = json_decode($request->getContent(), true);
         $user=UserRole::with('role')->where('user_id',$request['user_id'])->first();
         if($user->role[0])
         {
@@ -51,13 +45,8 @@ class TicketAPIController
     }
     public function update(Request $request)
     {
-        if(isset($request->flag) && $request->flag==1)
-		{
-			 $request=$request->all();
-		}else
-		{
-			$request = json_decode($request->getContent(), true);
-		}
+        // $request=$request->all();
+        $request = json_decode($request->getContent(), true);
         $validator = Validator::make($request, [
         'title'     => 'required',
         'description'=>'required',
@@ -100,13 +89,8 @@ class TicketAPIController
     }
     public function delete(Request $request)
     {
-        if(isset($request->flag) && $request->flag==1)
-		{
-			 $request=$request->all();
-		}else
-		{
-			$request = json_decode($request->getContent(), true);
-		}
+        //$request=$request->all();
+        $request = json_decode($request->getContent(), true);
         $validator = Validator::make($request, [
         'id'     => 'required|integer|exists:tickets,id',
         ],[

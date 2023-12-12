@@ -6,6 +6,6 @@ class SkillsType extends Model
     protected $table = "ServiceType";
     public $timestamps = false;
     protected $fillable = [
-        'Id','Title','PhotoPath','UpdatedDate','UpdatedBy','IsActive'
+        'Title','PhotoPath','UpdatedDate','UpdatedBy','IsActive'
     ];
 }

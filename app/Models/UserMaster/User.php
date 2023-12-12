@@ -31,9 +31,9 @@ class User extends Authenticatable
         'UpdatedDate',
         'CreatedBy',
     ];
-    protected $hidden = [
-      'Location',
-    ];
+    // protected $hidden = [
+    //     'Password',
+    // ];
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];

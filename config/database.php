@@ -77,8 +77,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
-        'sqlsrv' => [
+ 'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'localhost'),
@@ -90,6 +89,22 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+/*
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => 'inxgo.database.windows.net',
+            'port' => '1433',
+            'database' =>'inxgo_stage',
+            'username' => 'happijobs_DB1',
+            'password' => 'jet^49M3',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+*/
+
+
 
     ],
 

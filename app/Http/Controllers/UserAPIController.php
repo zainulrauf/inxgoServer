@@ -18,7 +18,7 @@ class UserAPIController extends Controller
     public function dashboard()
     {
         $users=User::count();
-        $skills=Skills::count();
+        $skills=Skills::where('active',1)->count();
         $tickets=Ticket::count();
         return response()->json(
         [
@@ -172,10 +172,11 @@ class UserAPIController extends Controller
                 'code'   => '401',
             ]);
         }
-        $data=User::with('role.role.permission.permisions')->where('UserId',$request['email'])->where('Password',$request['password'])->first();
+         $data=User::select('Id','Rating','Name','UserId','IsPhNoVerified','Password','PhNo','IsAdmin','IsActive')->with('role.role.permission.permisions')->where('UserId',$request['email'])->where('Password',$request['password'])->first();
         $data=$this->convert_from_latin1_to_utf8_recursively($data);
-        $token =  $data->createToken('MyApp')->accessToken; 
-        $custom = Str::random(10);
+        //$token =  $data->createToken('MyApp')->accessToken; 
+	$token =123;        
+$custom = Str::random(10);
         Token::create(['custom'=>$custom,'laravel'=>$token,'user_id'=>$data->Id]);
         $permisions=[];
         $modules=Module::get();
@@ -208,7 +209,7 @@ class UserAPIController extends Controller
                 }
             }
         }
-        $token =  $data->createToken('MyApp')->accessToken; 
+        //$token =  $data->createToken('MyApp')->accessToken; 
         // $token = $data->createToken('API Token')->accessToken;
         return response()->json(
         [
@@ -216,7 +217,7 @@ class UserAPIController extends Controller
             'code' => '200',
             'data' =>  $this->convert_from_latin1_to_utf8_recursively($data),
             'custom'=>$custom,
-            'token'=>$this->convert_from_latin1_to_utf8_recursively($token),
+            //'token'=>$this->convert_from_latin1_to_utf8_recursively($token),
             'permisions'=>$this->convert_from_latin1_to_utf8_recursively($permisions)
         ]);
     }

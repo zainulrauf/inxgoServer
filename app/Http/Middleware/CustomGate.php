@@ -26,6 +26,7 @@ class CustomGate
                 $check=Token::where('custom',$header)->pluck('laravel')->first();
                 if($check)
                 {
+                    dd($check);
                     // $response = $next($request);
                     // $response->headers->set('Authorization', 'Bearer '.$check);
                     // return $response;

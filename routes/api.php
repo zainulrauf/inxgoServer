@@ -32,12 +32,19 @@ Route::get('/dashboard', 'UserAPIController@dashboard');
 Route::post('/login', 'UserAPIController@login');
 Route::post('/image/upload', 'UserAPIController@imageUpload');
 // Route::middleware('gate')->group(function () {
+    Route::get('promotion', 'PromotionAPIController@index');
+    Route::any('promotionedit', 'PromotionAPIController@edit');
+    Route::any('promotion-save', 'PromotionAPIController@store');
+    Route::post('promotion/delete', 'PromotionAPIController@delete');
+	
 	Route::prefix('user')->group(function () {
 	    Route::get('/', 'UserAPIController@index');
-	    Route::get('/{id}', 'UserAPIController@edit');
+	    Route::post('/{id}', 'UserAPIController@edit');
 	    Route::post('/', 'UserAPIController@update');
 	    Route::post('/delete', 'UserAPIController@delete');
 	});
+	
+
  	Route::get('/address/get/{id}', 'UserAddressAPIController@index');
     Route::any('/address/edit/{id}', 'UserAddressAPIController@update');
     Route::any('/address/store', 'UserAddressAPIController@store');

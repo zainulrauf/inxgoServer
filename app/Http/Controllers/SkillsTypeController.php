@@ -6,15 +6,13 @@ use App\Models\SkillsType;
 use carbon\carbon;
 use DB;
 use Validator;
-use Schema;
 class SkillsTypeController extends Controller
 {
     public function delete(Request $request)
     {
-	//$request = $request->all();
         $request = json_decode($request->getContent(), true);
         $validator = Validator::make($request, [
-        'id'     => 'required|integer|exists:ServiceType,id',
+        'id'     => 'required|integer|exists:ServiceType,Id',
         ],[
         'id.required' => 'Service Type Id is required!',
         ]);
@@ -26,14 +24,11 @@ class SkillsTypeController extends Controller
                     'code'   => '401',
                 ]);
         }
-        $data=SkillsType::where('id',$request['id'])->first()->toArray();
+        $data=SkillsType::where('Id',$request['id'])->first()->toArray();
         //$data['ServiceTypeId']=$data['Id'];
         unset($data['Id']);
         DB::table('ServiceType_Log')->insert($data);
-	//return SkillsType::where('id',$request['id'])->first();
-	//Schema::disableForeignKeyConstraints();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        SkillsType::where('id',$request['id'])->delete();
+       	SkillsType::where('id',$request['id'])->update(['IsActive'=>0]);
         return response()->json(
         [
             'status' => 'success',
