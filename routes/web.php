@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('view.upload');
 });
+Route::get('/login/google', 'SocialController@redirectToGoogle');
+Route::get('/login/google/callback', 'SocialController@handleGoogleCallback');
+
 Route::any('/notAcess', 'UserAPIController@redirect')->name('notAcess');
