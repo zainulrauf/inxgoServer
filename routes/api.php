@@ -28,6 +28,10 @@ Route::get('passport', function () {
     \Artisan::call('passport:install');
     dd("passport");
 });
+Route::get('/login/google', 'SocialController@redirectToGoogle');
+Route::get('/login/google/callback', 'SocialController@handleGoogleCallback');
+
+
 Route::get('/dashboard', 'UserAPIController@dashboard');
 Route::post('/login', 'UserAPIController@login');
 Route::post('/image/upload', 'UserAPIController@imageUpload');
